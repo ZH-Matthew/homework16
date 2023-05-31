@@ -4,13 +4,9 @@ import exception.WrongPasswordException;
 public class Main {
     public static void main(String[] args) {
         try {
-            receivingParam("Sky_pro", "Номер1", "Number2");
-        } catch (WrongLoginException e) {
-            System.out.println("Ошибка логина!");
-            e.printStackTrace();
-        } catch (WrongPasswordException e) {
-            System.out.println("Ошибка пароля!");
-            e.printStackTrace();
+            receivingParam("Sky_pro", "Number1", "Number2");
+        } catch (WrongLoginException | WrongPasswordException e) {
+            System.out.println(e.getMessage());
         } finally {
             System.out.println("Проверка завершена!");
         }
