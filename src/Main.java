@@ -1,31 +1,30 @@
-import exception.WrongConfirmPasswordException;
 import exception.WrongLoginException;
 import exception.WrongPasswordException;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            receivingParam("Sky_pro", "Number1", "Number2");
+            receivingParam("Sky_pro", "Номер1", "Number2");
         } catch (WrongLoginException e) {
-            System.out.println("Логин содержит недопустимые символы или его длина больше 20 символов");
+            System.out.println("Ошибка логина!");
+            e.printStackTrace();
         } catch (WrongPasswordException e) {
-            System.out.println("Пароль содержит недопустимые символы или его длина больше 20 символов");
-        } catch (WrongConfirmPasswordException e) {
-            System.out.println("Не корректное подтверждение пароля");
+            System.out.println("Ошибка пароля!");
+            e.printStackTrace();
         } finally {
             System.out.println("Проверка завершена!");
         }
     }
 
-    public static void receivingParam(String login, String password, String confirmPassword) throws WrongLoginException, WrongPasswordException, WrongConfirmPasswordException {
+    public static void receivingParam(String login, String password, String confirmPassword) {
         if (!(login.matches("\\w+") && (login.length() < 20))) {
-            throw new WrongLoginException();
+            throw new WrongLoginException("Логин содержит недопустимые символы или его длина больше 20 символов");
         }
         if (!(password.matches("\\w+") && (password.length() < 20))) {
-            throw new WrongPasswordException();
+            throw new WrongPasswordException("Пароль содержит недопустимые символы или его длина больше 20 символов");
         }
         if (!password.equals(confirmPassword)) {
-            throw new WrongConfirmPasswordException();
+            throw new WrongPasswordException("Не корректное подтверждение пароля");
         }
     }
 }

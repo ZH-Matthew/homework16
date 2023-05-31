@@ -1,8 +1,7 @@
 package exception;
 
-import java.io.IOException;
-
-public class WrongLoginException extends IOException {
-    public WrongLoginException() {
+public class WrongLoginException extends RuntimeException {
+    public WrongLoginException(String message) {
+        super(message);
     }
 }
